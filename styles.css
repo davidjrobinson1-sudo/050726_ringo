@@ -1,4 +1,4 @@
-:root {
+﻿:root {
   --bg: #0c0c0c;
   --panel: #151515;
   --panel-soft: #1c1b19;
@@ -258,7 +258,7 @@ h3 {
 
 .hero-proof span::before {
   color: var(--gold);
-  content: "✓";
+  content: "âœ“";
   font-weight: 900;
   margin-right: 8px;
 }
@@ -725,7 +725,7 @@ details p {
 .final-cta {
   background:
     linear-gradient(rgba(0, 0, 0, 0.62), rgba(0, 0, 0, 0.76)),
-    url("assets/unboxing-black.png") center / cover;
+    url("unboxing-black.png") center / cover;
   padding: clamp(82px, 12vw, 150px) 24px;
   text-align: center;
 }
@@ -967,3 +967,4 @@ details p {
     width: 100%;
   }
 }
+
