@@ -412,8 +412,49 @@ h3 {
   font-size: 0.95rem;
 }
 
+.product-option {
+  display: grid;
+  gap: 8px;
+  margin: 0 0 14px;
+}
+
+.product-option span {
+  color: #5a554d;
+  font-size: 0.78rem;
+  font-weight: 850;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.product-option select {
+  appearance: none;
+  background:
+    linear-gradient(45deg, transparent 50%, #16120b 50%) calc(100% - 18px) 50% / 7px 7px no-repeat,
+    linear-gradient(135deg, #16120b 50%, transparent 50%) calc(100% - 13px) 50% / 7px 7px no-repeat,
+    #f7f3ec;
+  border: 1px solid rgba(16, 16, 16, 0.18);
+  color: #16120b;
+  font: inherit;
+  font-weight: 750;
+  min-height: 46px;
+  padding: 0 42px 0 14px;
+  width: 100%;
+}
+
 .product-action {
   width: 100%;
+}
+
+.product-action[disabled] {
+  cursor: wait;
+  opacity: 0.62;
+}
+
+.checkout-message {
+  color: #5a554d;
+  font-weight: 750;
+  line-height: 1.5;
+  margin: 24px 0 0;
 }
 
 .feature-grid-section {
