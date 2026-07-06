@@ -4,42 +4,10 @@ const navToggle = document.querySelector("[data-nav-toggle]");
 const checkoutMessage = document.querySelector("[data-checkout-message]");
 
 const PAYMENT_LINKS = {
-  "obsidian-mirror": {
-    6: "https://buy.stripe.com/REPLACE_OBSIDIAN_MIRROR_SIZE_6",
-    7: "https://buy.stripe.com/REPLACE_OBSIDIAN_MIRROR_SIZE_7",
-    8: "https://buy.stripe.com/REPLACE_OBSIDIAN_MIRROR_SIZE_8",
-    9: "https://buy.stripe.com/REPLACE_OBSIDIAN_MIRROR_SIZE_9",
-    10: "https://buy.stripe.com/REPLACE_OBSIDIAN_MIRROR_SIZE_10",
-    11: "https://buy.stripe.com/REPLACE_OBSIDIAN_MIRROR_SIZE_11",
-    12: "https://buy.stripe.com/REPLACE_OBSIDIAN_MIRROR_SIZE_12",
-  },
-  "obsidian-matte": {
-    6: "https://buy.stripe.com/REPLACE_OBSIDIAN_MATTE_SIZE_6",
-    7: "https://buy.stripe.com/REPLACE_OBSIDIAN_MATTE_SIZE_7",
-    8: "https://buy.stripe.com/REPLACE_OBSIDIAN_MATTE_SIZE_8",
-    9: "https://buy.stripe.com/REPLACE_OBSIDIAN_MATTE_SIZE_9",
-    10: "https://buy.stripe.com/REPLACE_OBSIDIAN_MATTE_SIZE_10",
-    11: "https://buy.stripe.com/REPLACE_OBSIDIAN_MATTE_SIZE_11",
-    12: "https://buy.stripe.com/REPLACE_OBSIDIAN_MATTE_SIZE_12",
-  },
-  "arctic-pearl": {
-    6: "https://buy.stripe.com/REPLACE_ARCTIC_PEARL_SIZE_6",
-    7: "https://buy.stripe.com/REPLACE_ARCTIC_PEARL_SIZE_7",
-    8: "https://buy.stripe.com/REPLACE_ARCTIC_PEARL_SIZE_8",
-    9: "https://buy.stripe.com/REPLACE_ARCTIC_PEARL_SIZE_9",
-    10: "https://buy.stripe.com/REPLACE_ARCTIC_PEARL_SIZE_10",
-    11: "https://buy.stripe.com/REPLACE_ARCTIC_PEARL_SIZE_11",
-    12: "https://buy.stripe.com/REPLACE_ARCTIC_PEARL_SIZE_12",
-  },
-  "rose-quartz": {
-    6: "https://buy.stripe.com/REPLACE_ROSE_QUARTZ_SIZE_6",
-    7: "https://buy.stripe.com/REPLACE_ROSE_QUARTZ_SIZE_7",
-    8: "https://buy.stripe.com/REPLACE_ROSE_QUARTZ_SIZE_8",
-    9: "https://buy.stripe.com/REPLACE_ROSE_QUARTZ_SIZE_9",
-    10: "https://buy.stripe.com/REPLACE_ROSE_QUARTZ_SIZE_10",
-    11: "https://buy.stripe.com/REPLACE_ROSE_QUARTZ_SIZE_11",
-    12: "https://buy.stripe.com/REPLACE_ROSE_QUARTZ_SIZE_12",
-  },
+  "obsidian-mirror": "https://buy.stripe.com/cNidRa5Yf8Fc8ld0ZacbC00",
+  "arctic-pearl": "https://buy.stripe.com/9B6dRa9araNkatlgY8cbC01",
+  "obsidian-matte": "https://buy.stripe.com/3cIbJ2aev8Fc44XeQ0cbC02",
+  "rose-quartz": "https://buy.stripe.com/aFa28sgCTg7EgRJeQ0cbC03",
 };
 
 function updateHeader() {
@@ -64,7 +32,13 @@ function getSelectedProduct(button) {
 }
 
 function getPaymentLink(product) {
-  return PAYMENT_LINKS[product.id]?.[product.size];
+  return PAYMENT_LINKS[product.id];
+}
+
+function buildPaymentUrl(paymentLink, product) {
+  const url = new URL(paymentLink);
+  url.searchParams.set("client_reference_id", `${product.id}-size-${product.size}`);
+  return url.toString();
 }
 
 function startCheckout(button) {
@@ -73,7 +47,7 @@ function startCheckout(button) {
 
   if (!paymentLink || paymentLink.includes("REPLACE_")) {
     setCheckoutMessage(
-      `Add the Stripe Payment Link for ${product.name}, size ${product.size}, in script.js.`,
+      `Add the Stripe Payment Link for ${product.name} in script.js.`,
       true
     );
     return;
@@ -82,7 +56,7 @@ function startCheckout(button) {
   button.disabled = true;
   button.textContent = "Opening checkout...";
   setCheckoutMessage(`Opening secure checkout for ${product.name}, size ${product.size}.`);
-  window.location.href = paymentLink;
+  window.location.href = buildPaymentUrl(paymentLink, product);
 }
 
 window.addEventListener("scroll", updateHeader, { passive: true });
