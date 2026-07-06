@@ -32,7 +32,13 @@ function getSelectedProduct(button) {
 }
 
 function getPaymentLink(product) {
-  return PAYMENT_LINKS[product.id];
+  const linkConfig = PAYMENT_LINKS[product.id];
+
+  if (typeof linkConfig === "string") {
+    return linkConfig;
+  }
+
+  return linkConfig?.[product.size];
 }
 
 function buildPaymentUrl(paymentLink, product) {
