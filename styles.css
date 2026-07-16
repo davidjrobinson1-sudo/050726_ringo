@@ -734,12 +734,25 @@ h3 {
   text-align: center;
 }
 
+.quote-block {
+  margin: 0 auto;
+  max-width: 1080px;
+}
+
 blockquote {
   font-size: clamp(2rem, 5vw, 4.2rem);
   font-weight: 850;
   line-height: 1.08;
-  margin: 0 auto;
-  max-width: 1080px;
+  margin: 0;
+}
+
+.quote-block figcaption {
+  color: #766c5e;
+  font-size: 0.96rem;
+  font-weight: 850;
+  letter-spacing: 0.12em;
+  margin-top: 28px;
+  text-transform: uppercase;
 }
 
 .faq {
