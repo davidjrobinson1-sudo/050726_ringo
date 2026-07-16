@@ -484,11 +484,12 @@ h3 {
   border: 1px solid var(--line);
   color: var(--gold-soft);
   display: inline-flex;
-  font-size: 0.78rem;
+  font-size: 1.35rem;
   font-weight: 900;
   height: 54px;
   justify-content: center;
-  letter-spacing: 0.05em;
+  letter-spacing: 0;
+  line-height: 1;
   width: 54px;
 }
 
